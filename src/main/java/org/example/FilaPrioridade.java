@@ -6,6 +6,10 @@ public class FilaPrioridade {
     private Celula inicioPrioridadeZero, inicioPrioridadeUm, atualPrioridadeZero,
             atualPrioridadeUm, auxPrioridadeZero, auxPrioridadeUm;
 
+    public boolean isEmpty() {
+        return (heads[0] == null) || (heads[1] == null);
+    }
+
     public FilaPrioridade() {
         this.heads = new Celula[2]; // Cabeças das filas de prioridade
     }
@@ -40,32 +44,36 @@ public class FilaPrioridade {
         sizeTotal++;
     }
 
-    public boolean dequeue(int prioridade) {
-        Celula remove = front(prioridade);
-        if (remove != null) {
-            if (prioridade == 0) {
-                inicioPrioridadeZero = remove.getProximo();
-                inicioPrioridadeZero.setAnterior(null);
-                heads[prioridade] = inicioPrioridadeZero;
-                remove.setProximo(null);
-                return true;
-            } else {
-                inicioPrioridadeUm = remove.getProximo();
-                inicioPrioridadeUm.setAnterior(null);
-                heads[prioridade] = inicioPrioridadeUm;
-                remove.setProximo(null);
-                return true;
-            }
-        }
-        return false;
-    }
-
     public Celula front(int prioridade) {
         if (prioridade == 0) {
             return inicioPrioridadeZero;
         } else {
             return inicioPrioridadeUm;
         }
+    }
+
+    public boolean dequeue(int prioridade) {
+        Celula remove = front(prioridade);
+        if (remove != null) {
+            if (prioridade == 0) {
+                inicioPrioridadeZero = remove.getProximo();
+                inicioPrioridadeZero.setAnterior(null);
+                remove.setProximo(null);
+                heads[prioridade] = inicioPrioridadeZero;
+                sizeTotal--;
+                sizePrioridadeZero--;
+                return true;
+            } else {
+                inicioPrioridadeUm = remove.getProximo();
+                inicioPrioridadeUm.setAnterior(null);
+                heads[prioridade] = inicioPrioridadeUm;
+                remove.setProximo(null);
+                sizeTotal--;
+                sizePrioridadeUm--;
+                return true;
+            }
+        }
+        return false;
     }
 
     public int sizeTotal() {
