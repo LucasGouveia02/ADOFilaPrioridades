@@ -7,7 +7,7 @@ public class Main {
         filaPrioridade.enqueue("Enviar relatório", 0);
         filaPrioridade.enqueue("Preparar apresentação", 1);
 
-        System.out.println("Lista de Tarefas:");
+        System.out.println("\nLista de Tarefas:");
         filaPrioridade.exibirTodasTarefas();
 
         System.out.println("\nTamanho da fila 1: " + filaPrioridade.sizePrioridadeUm());
@@ -17,7 +17,7 @@ public class Main {
         System.out.println("\nPróxima tarefa:");
         filaPrioridade.dequeue(1);
 
-        System.out.println("\nLista de Tarefas atualizada:");
+        System.out.println("Lista de Tarefas atualizada:");
         filaPrioridade.exibirTodasTarefas();
 
         System.out.println("\nTamanho da fila 1: " + filaPrioridade.sizePrioridadeUm());
